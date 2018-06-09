@@ -1,7 +1,6 @@
  # -*- coding: utf-8 -*-
 import  RPi.GPIO as gpio    #导入所有模块
 import  time
-import  sys
 import  pygame
 import  random
 
@@ -120,8 +119,7 @@ def distance():
     return distance
 
 def auto_drive():
-    v = 0
-    while v < 100:
+    while True:
         forward(0.05)
         d = distance()
         if  d < 40:
@@ -133,7 +131,6 @@ def auto_drive():
             else:
                 turn_right(1.5)
         gpio.cleanup()
-        v += 1
 
 def main():
     gpio.setwarnings(False)
@@ -151,7 +148,6 @@ def main():
                 pivot_turn_right(0.05)  #右转0.05秒
             elif event.key ==pygame.K_b:
                 stop(1)
-                break
             elif event.key ==pygame.K_o:
                 auto_drive()
 
